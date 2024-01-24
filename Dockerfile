@@ -15,8 +15,6 @@ FROM gcr.io/distroless/base-debian11:nonroot
 WORKDIR /app
 COPY --from=builder /app/main /app/main
 
-USER nonroot:nonroot
-
 EXPOSE 8888
 
 CMD ["/app/main"]
