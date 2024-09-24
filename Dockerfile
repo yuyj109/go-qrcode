@@ -1,5 +1,5 @@
 # Build stage
-FROM golang:1.21.4-bullseye as builder
+FROM golang:1.23.1-alpine AS builder
 
 WORKDIR /app
 
@@ -10,11 +10,11 @@ COPY . .
 RUN go build -o main .
 
 # Final stage
-FROM gcr.io/distroless/base-debian11:nonroot
+FROM gcr.io/distroless/base-debian12:nonroot
 
 WORKDIR /app
 COPY --from=builder /app/main /app/main
 
-EXPOSE 8888
+EXPOSE 8000
 
 CMD ["/app/main"]
